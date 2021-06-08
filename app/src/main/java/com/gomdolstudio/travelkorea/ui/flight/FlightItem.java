@@ -20,6 +20,18 @@ public class FlightItem {
         return flight;
     }
 
+    public String getDepAirportId(){
+        return flight.getDepAirportId();
+    }
+
+    public String getArrAirportId(){
+        return flight.getArrAirportId();
+    }
+
+   public void setDate(String date){
+        this.flight.setDepPlandTime(date);
+   }
+
     public EventListener getEventListener(){
         return eventListener;
     }

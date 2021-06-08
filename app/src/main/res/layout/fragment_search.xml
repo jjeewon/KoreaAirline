@@ -13,8 +13,54 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-
         >
+        <TextView
+            android:id="@+id/depAirportId"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:text="@{item.depAirportId}"
+            android:textSize="22dp"
+            app:layout_constrainedWidth="true"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/arrAirportId"
+            app:layout_constraintTop_toTopOf="parent"
+            />
+        <TextView
+            android:id="@+id/arrAirportId"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:text="@{item.arrAirportId}"
+            android:textSize="22dp"
+            app:layout_constrainedWidth="true"
+            app:layout_constraintStart_toEndOf="@id/depAirportId"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            />
+        
+        <DatePicker
+            android:id="@+id/datePicker"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constrainedWidth="true"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/arrAirportId"/>
+
+        <Button
+            android:id="@+id/searchBtn"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constrainedWidth="true"
+            android:textSize="22dp"
+            android:text="항공권 검색"
+            android:onClick="@{v -> item.eventListener.onSearchBtnClick(item)}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/datePicker"
+            app:layout_constraintEnd_toEndOf="parent"
+            />
+        
+
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
