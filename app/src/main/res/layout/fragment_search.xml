@@ -5,13 +5,16 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     >
     <data>
+        <import type="android.view.View"/>
         <variable
             name="item"
             type="com.gomdolstudio.travelkorea.ui.flight.FlightItem" />
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+
+        >
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
