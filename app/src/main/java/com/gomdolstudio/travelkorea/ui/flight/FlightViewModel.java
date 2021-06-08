@@ -26,5 +26,9 @@ public class FlightViewModel extends AndroidViewModel implements FlightItem.Even
         // SingleLiveEvent의 값을 변경한다.
         searchBtnClickEvent.setValue(flightItem);
     }
-    
+
+    public SingleLiveEvent<FlightItem> getFlightItem(){
+        return searchBtnClickEvent;
+    }
+
 }
