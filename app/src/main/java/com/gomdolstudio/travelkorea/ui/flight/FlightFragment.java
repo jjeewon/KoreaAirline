@@ -1,6 +1,9 @@
 package com.gomdolstudio.travelkorea.ui.flight;
 
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import androidx.lifecycle.ViewModelProvider;
 
@@ -10,6 +13,7 @@ import com.gomdolstudio.travelkorea.di.AppViewModelFactory;
 import javax.inject.Inject;
 
 import dagger.android.support.DaggerFragment;
+import io.reactivex.rxjava3.annotations.NonNull;
 import io.reactivex.rxjava3.annotations.Nullable;
 
 public class FlightFragment extends DaggerFragment {
@@ -29,5 +33,13 @@ public class FlightFragment extends DaggerFragment {
         super.onCreate(savedInstanceState);
         // ViewModel 객체 요청
         viewModel = new ViewModelProvider(this, viewModelFactory).get(FlightViewModel.class);
+
     }
+
+    @Nullable
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState){
+        return binding.getRoot();
+    }
+
 }
