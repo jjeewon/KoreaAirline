@@ -8,9 +8,13 @@ import com.gomdolstudio.travelkorea.R;
 import com.gomdolstudio.travelkorea.databinding.ActivityMainBinding;
 import com.gomdolstudio.travelkorea.di.ActivityContext;
 import com.gomdolstudio.travelkorea.di.ActivityScope;
+import com.gomdolstudio.travelkorea.di.FragmentScope;
+import com.gomdolstudio.travelkorea.ui.flight.FlightFragment;
+import com.gomdolstudio.travelkorea.ui.flight.FlightModule;
 
 import dagger.Module;
 import dagger.Provides;
+import dagger.android.ContributesAndroidInjector;
 
 @Module
 public abstract class MainModule {
@@ -25,4 +29,9 @@ public abstract class MainModule {
     static Context provideContext(MainActivity activity){
         return activity;
     }
+
+    @FragmentScope
+    @ContributesAndroidInjector(modules = FlightModule.class)
+    abstract FlightFragment getFlightFragment();
+
 }
