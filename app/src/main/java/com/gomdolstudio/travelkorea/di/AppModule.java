@@ -11,6 +11,9 @@ import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
+import hu.akarnokd.rxjava3.retrofit.RxJava3CallAdapterFactory;
+import retrofit2.Retrofit;
+import retrofit2.converter.simplexml.SimpleXmlConverterFactory;
 
 @Module(includes = {ViewModelModule.class})
 public class AppModule {
@@ -33,5 +36,15 @@ public class AppModule {
     @Named("errorEvent")
     SingleLiveEvent<Throwable> provideErrorEvent(){
         return new SingleLiveEvent<>();
+    }
+
+    @Provides
+    @Singleton
+    Retrofit provideRetrofit(){
+        return new Retrofit.Builder()
+                .baseUrl(" ")
+                .addConverterFactory(SimpleXmlConverterFactory.create())
+                .addCallAdapterFactory(RxJava3CallAdapterFactory.create())
+                .build();
     }
 }
