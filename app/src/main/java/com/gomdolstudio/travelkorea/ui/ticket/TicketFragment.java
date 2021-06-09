@@ -5,9 +5,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 
 import com.gomdolstudio.travelkorea.databinding.FragmentTicketBinding;
+import com.gomdolstudio.travelkorea.di.AppViewModelFactory;
 
 import javax.inject.Inject;
 
@@ -22,9 +24,21 @@ public class TicketFragment extends DaggerFragment {
     @Inject
     Lazy<NavController> navController;
 
+    @Inject
+    AppViewModelFactory viewModelFactory;
+
+    TicketViewModel viewModel;
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
+        viewModel = new ViewModelProvider(this, viewModelFactory).get(TicketViewModel.class);
+        if(savedInstanceState == null){
+            // Flight 객첼르 전달받는다.
+            TicketFragmentArgs args = TicketFragmentArgs.fromBundle(getArguments());
+            viewModel.load(args.getFlight());
+        }
+
 
     }
 

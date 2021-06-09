@@ -6,6 +6,8 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.MutableLiveData;
 
+import com.gomdolstudio.travelkorea.data.entity.Flight;
+
 import javax.inject.Inject;
 
 public class TicketViewModel extends AndroidViewModel {
@@ -23,5 +25,10 @@ public class TicketViewModel extends AndroidViewModel {
 
     public MutableLiveData<Boolean> getLoading(){
         return loading;
+    }
+
+    public void load(Flight flight){
+        int a = 4;
+        int c = 4;
     }
 }
