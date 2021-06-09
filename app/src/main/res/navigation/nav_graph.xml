@@ -10,14 +10,19 @@
         android:id="@+id/flight_fragment"
         android:name="com.gomdolstudio.travelkorea.ui.flight.FlightFragment"
         android:label="flight_fragment"
-        tools:layout="@layout/fragment_search"
-        >
-
+        tools:layout="@layout/fragment_search">
+        <action
+            android:id="@+id/action_flight_fragment_to_ticket_fragment"
+            app:destination="@id/ticket_fragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            />
     </fragment>
     <fragment
         android:id="@+id/ticket_fragment"
         android:name="com.gomdolstudio.travelkorea.ui.ticket.TicketFragment"
         android:label="fragment_ticket"
+        tools:layout="@layout/fragment_ticket"
         >
 
     </fragment>
