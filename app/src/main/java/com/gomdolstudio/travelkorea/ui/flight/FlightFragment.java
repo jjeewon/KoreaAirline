@@ -4,9 +4,11 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 
 import androidx.lifecycle.ViewModelProvider;
 
+import com.gomdolstudio.travelkorea.data.entity.AirportId;
 import com.gomdolstudio.travelkorea.databinding.FragmentSearchBinding;
 import com.gomdolstudio.travelkorea.di.AppViewModelFactory;
 
@@ -28,18 +30,30 @@ public class FlightFragment extends DaggerFragment {
 
     FlightViewModel viewModel;
 
+    ArrayAdapter<String> arrayAdapter;
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         // ViewModel 객체 요청
         viewModel = new ViewModelProvider(this, viewModelFactory).get(FlightViewModel.class);
-
+        AirportId airportIdList = new AirportId();
+        arrayAdapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_spinner_dropdown_item,airportIdList.getAirportIdList());
+        binding.arrAirportId.setAdapter(arrayAdapter);
+        binding.depAirportId.setAdapter(arrayAdapter);
     }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState){
         return binding.getRoot();
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState){
+        super.onViewCreated(view, savedInstanceState);
+        binding.setLifecycleOwner(getViewLifecycleOwner());
+        binding.setViewModel(viewModel);
     }
 
 }

@@ -48,6 +48,14 @@ public class Flight implements Parcelable {
         this.depPlandTime = depPlandTime;
     }
 
+    public void setDepAirportId(String id){
+        this.depAirportId = id;
+    }
+
+    public void setArrAirportId(String id){
+        this.arrAirportId = id;
+    }
+
     protected Flight(Parcel in) {
         numOfRows = in.readString();
         pageNo = in.readString();

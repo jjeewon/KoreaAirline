@@ -15,5 +15,6 @@ public interface AppComponent extends AndroidInjector<App> {
     @Component.Factory
     abstract class Factory implements AndroidInjector.Factory<App>{
 
+
     }
 }

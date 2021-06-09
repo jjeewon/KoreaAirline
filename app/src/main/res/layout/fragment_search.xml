@@ -7,58 +7,67 @@
     <data>
         <import type="android.view.View"/>
         <variable
-            name="item"
-            type="com.gomdolstudio.travelkorea.ui.flight.FlightItem" />
+            name="viewModel"
+            type="com.gomdolstudio.travelkorea.ui.flight.FlightViewModel" />
+
+
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         >
-        <TextView
+        <Spinner
             android:id="@+id/depAirportId"
             android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:text="@{item.depAirportId}"
+            android:layout_height="wrap_content"
+            android:text=""
             android:textSize="22dp"
             app:layout_constrainedWidth="true"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toStartOf="@id/arrAirportId"
             app:layout_constraintTop_toTopOf="parent"
+            android:onItemSelected="@{(parent,view,pos,id)-> viewModel.onSpinnerItemSelected(viewModel.depId, parent, pos, viewModel.depId)}"
+            
             />
-        <TextView
+        <Spinner
             android:id="@+id/arrAirportId"
             android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:text="@{item.arrAirportId}"
+            android:layout_height="wrap_content"
+            android:text=""
             android:textSize="22dp"
             app:layout_constrainedWidth="true"
             app:layout_constraintStart_toEndOf="@id/depAirportId"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+
+            android:onItemSelected="@{(parent,view,pos,id)-> viewModel.onSpinnerItemSelected(viewModel.arrId, parent, pos, viewModel.depId)}"
             />
-        
+
         <DatePicker
             android:id="@+id/datePicker"
             android:layout_width="0dp"
             android:layout_height="0dp"
             app:layout_constrainedWidth="true"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/searchBtn"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/arrAirportId"/>
+            app:layout_constraintTop_toBottomOf="@id/arrAirportId"
+            android:onDateChanged="@{(v, year, month, day) -> viewModel.onDateChanged(year, month, day)}"
+            />
 
         <Button
             android:id="@+id/searchBtn"
             android:layout_width="0dp"
-            android:layout_height="0dp"
+            android:layout_height="wrap_content"
             app:layout_constrainedWidth="true"
             android:textSize="22dp"
             android:text="항공권 검색"
-            android:onClick="@{v -> item.eventListener.onSearchBtnClick(item)}"
+            android:onClick="@{v -> viewModel.onSearchBtnClick(viewModel.flightItem)}"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/datePicker"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             />
-        
+
 
 
 

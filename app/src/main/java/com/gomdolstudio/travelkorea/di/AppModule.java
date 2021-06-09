@@ -15,7 +15,7 @@ import hu.akarnokd.rxjava3.retrofit.RxJava3CallAdapterFactory;
 import retrofit2.Retrofit;
 import retrofit2.converter.simplexml.SimpleXmlConverterFactory;
 
-@Module(includes = {ViewModelModule.class})
+@Module(includes = {ViewModelModule.class, RetrofitModule.class})
 public class AppModule {
 
     @Provides
