@@ -32,7 +32,7 @@ public class TicketAdapter extends RecyclerView.Adapter<ViewBindingHolder> {
     @NonNull
     @Override
     public ViewBindingHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new ViewBindingHolder((parent.getContext(), viewType));
+        return new ViewBindingHolder(parent.getContext(), viewType);
     }
 
     // 뷰 홀더와 뷰 모델 바인딩
