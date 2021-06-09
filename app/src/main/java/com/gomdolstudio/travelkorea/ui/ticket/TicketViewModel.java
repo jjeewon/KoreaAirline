@@ -6,6 +6,7 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.MutableLiveData;
 
+import com.gomdolstudio.travelkorea.data.SearchService;
 import com.gomdolstudio.travelkorea.data.entity.Flight;
 import com.gomdolstudio.travelkorea.util.SingleLiveEvent;
 
@@ -27,11 +28,15 @@ public class TicketViewModel extends AndroidViewModel {
     private final MutableLiveData<List<TicketItem>> liveTickets = new MutableLiveData<>();
     private final CompositeDisposable compositeDisposable = new CompositeDisposable();
 
+    @NonNull
+    private final SearchService searchService;
+
     @Inject
-    public TicketViewModel(@NonNull Application application, @Named("errorEvent") SingleLiveEvent<Throwable> errorEvent) {
+    public TicketViewModel(@NonNull Application application, SearchService searchService, @Named("errorEvent") SingleLiveEvent<Throwable> errorEvent) {
         super(application);
         Timber.d("PostViewModel created");
         // 오브젝트 그래프로부터 생성자 주입
+        this.searchService = searchService;
         this.errorEvent = errorEvent;
     }
 
@@ -44,8 +49,7 @@ public class TicketViewModel extends AndroidViewModel {
     }
 
     public void load(Flight flight){
-        int a = 4;
-        int c = 4;
+
     }
 
     @Override
@@ -53,5 +57,10 @@ public class TicketViewModel extends AndroidViewModel {
         super.onCleared();
         Timber.d("onCleared");
         compositeDisposable.dispose();
+    }
+
+    @NonNull
+    public MutableLiveData<List<TicketItem>> getLiveTickets(){
+        return liveTickets;
     }
 }
