@@ -8,6 +8,7 @@ import androidx.lifecycle.MutableLiveData;
 
 import com.gomdolstudio.travelkorea.data.SearchService;
 import com.gomdolstudio.travelkorea.data.entity.Flight;
+import com.gomdolstudio.travelkorea.data.entity.Ticket;
 import com.gomdolstudio.travelkorea.util.SingleLiveEvent;
 
 import java.util.List;
@@ -15,10 +16,13 @@ import java.util.List;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
+import io.reactivex.rxjava3.core.Observable;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
+import io.reactivex.rxjava3.schedulers.Schedulers;
 import timber.log.Timber;
 
-public class TicketViewModel extends AndroidViewModel {
+public class TicketViewModel extends AndroidViewModel implements TicketItem.EventListener{
 
     @NonNull
     private final SingleLiveEvent<Throwable> errorEvent;
@@ -40,16 +44,22 @@ public class TicketViewModel extends AndroidViewModel {
         this.errorEvent = errorEvent;
     }
 
-    public void loadTickets(){
-
-    }
 
     public MutableLiveData<Boolean> getLoading(){
         return loading;
     }
 
     public void load(Flight flight){
-
+        compositeDisposable.add(searchService.getTicket(flight.getNumOfRows(),
+                flight.getPageNo(),flight.getDepAirportId(),flight.getArrAirportId(),
+                flight.getDepPlandTime(),flight.getAirlineId())
+                .flatMapObservable(Observable::fromIterable)
+                .map(ticket -> new TicketItem(ticket,this))
+                .toList()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .doOnSuccess(item -> loading.postValue(false))
+                .subscribe(liveTickets::setValue, errorEvent::setValue));
     }
 
     @Override
@@ -62,5 +72,10 @@ public class TicketViewModel extends AndroidViewModel {
     @NonNull
     public MutableLiveData<List<TicketItem>> getLiveTickets(){
         return liveTickets;
+    }
+
+    @Override
+    public void onTicketClick(Ticket ticket) {
+
     }
 }
