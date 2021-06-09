@@ -47,4 +47,11 @@ public class TicketViewModel extends AndroidViewModel {
         int a = 4;
         int c = 4;
     }
+
+    @Override
+    protected void onCleared(){
+        super.onCleared();
+        Timber.d("onCleared");
+        compositeDisposable.dispose();
+    }
 }
