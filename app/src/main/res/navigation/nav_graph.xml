@@ -24,6 +24,10 @@
         android:label="fragment_ticket"
         tools:layout="@layout/fragment_ticket"
         >
+        <argument
+            android:name="Flight"
+            app:argType="com.gomdolstudio.travelkorea.data.entity.Flight"
+            />
 
     </fragment>
 
