@@ -18,5 +18,5 @@ public class TicketModule {
     public FragmentTicketBinding provideBinding(@ApplicationContext Context context){
         return FragmentTicketBinding.inflate(LayoutInflater.from(context), null, false);
     }
-    
+
 }
