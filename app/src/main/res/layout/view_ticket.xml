@@ -4,10 +4,112 @@
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     >
-
+    <data>
+        <variable
+            name="item"
+            type="com.gomdolstudio.travelkorea.ui.ticket.TicketItem" />
+    </data>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:onClick="@{v->item.eventListener.onTicketClick(item.ticket)}"
+        android:padding="16dp"
+        >
+        <ImageView
+            android:id="@+id/airline_icon"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:src="@drawable/abc_vector_test"
+
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+        <TextView
+            android:id="@+id/airlineNum"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:text="@{item.airlineNm}"
+            android:textSize="20dp"
+            app:layout_constrainedWidth="true"
+
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintStart_toEndOf="@id/airline_icon"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="대한항공"/>
+        <TextView
+            android:id="@+id/vihicleId"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:text="@{item.vihicleId}"
+            android:textSize="20dp"
+            app:layout_constrainedWidth="true"
+
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintStart_toEndOf="@id/airlineNum"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="2D687"/>
+        <TextView
+            android:id="@+id/seatClass"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:text="일반석"
+            android:textSize="20dp"
+            app:layout_constrainedWidth="true"
+
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintStart_toEndOf="@id/vihicleId"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="일반석"/>
+
+        <TextView
+            android:id="@+id/depPlandTime"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:text="@{item.depPlandTime}"
+            app:layout_constrainedWidth="true"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/airline_icon"
+            tools:text="6시30분"
+            />
+
+        <TextView
+            android:id="@+id/arrPlandTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:text="@{item.arrPlandTime}"
+            android:textSize="20dp"
+            app:layout_constrainedWidth="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintStart_toEndOf="@id/depPlandTime"
+            app:layout_constraintTop_toBottomOf="@id/airline_icon"
+            tools:text="8시30분"/>
+
+        <TextView
+            android:id="@+id/charge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:text="@{item.economyCharge}"
+            android:textSize="20dp"
+            app:layout_constrainedWidth="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintStart_toEndOf="@id/arrPlandTime"
+            app:layout_constraintTop_toBottomOf="@id/airline_icon"
+            tools:text="5000"/>
+
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

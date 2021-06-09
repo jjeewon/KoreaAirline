@@ -11,6 +11,10 @@ public class TicketItem {
         this.eventListener = eventListener;
     }
 
+    public Ticket getTicket() {
+        return ticket;
+    }
+
     public String getVihicleId() {
         return ticket.getVihicleId();
     }
@@ -41,6 +45,10 @@ public class TicketItem {
 
     public String getPrestigeCharge() {
         return ticket.getPrestigeCharge();
+    }
+
+    public EventListener getEventListener(){
+        return eventListener;
     }
 
     public interface EventListener{
