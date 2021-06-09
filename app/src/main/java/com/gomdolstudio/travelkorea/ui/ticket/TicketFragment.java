@@ -62,7 +62,8 @@ public class TicketFragment extends DaggerFragment {
         binding.recyclerView.setAdapter(adapter);
         binding.recyclerView.setLayoutManager(layoutManager);
         binding.setViewModel(viewModel);
-
+        viewModel.getLiveTickets()
+                .observe(getViewLifecycleOwner(), list -> adapter.setTickets(list));
 
     }
 }

@@ -12,7 +12,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:onClick="@{v->item.eventListener.onTicketClick(item.ticket)}"
+        android:onClick="@{v->item.eventListener.onTicketClick(item)}"
         android:padding="16dp"
         >
         <ImageView
