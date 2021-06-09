@@ -52,6 +52,6 @@ public class TicketItem {
     }
 
     public interface EventListener{
-        void onTicketClick(Ticket ticket);
+        void onTicketClick(TicketItem ticket);
     }
 }

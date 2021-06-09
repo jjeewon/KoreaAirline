@@ -32,6 +32,7 @@ public class TicketViewModel extends AndroidViewModel implements TicketItem.Even
     private final MutableLiveData<List<TicketItem>> liveTickets = new MutableLiveData<>();
     private final CompositeDisposable compositeDisposable = new CompositeDisposable();
 
+    private final SingleLiveEvent<TicketItem> ticketClickEvent = new SingleLiveEvent<>();
     @NonNull
     private final SearchService searchService;
 
@@ -74,8 +75,14 @@ public class TicketViewModel extends AndroidViewModel implements TicketItem.Even
         return liveTickets;
     }
 
+    /**
+     * TicketItem 클릭 이벤트 구현
+     * @param ticket
+     */
     @Override
-    public void onTicketClick(Ticket ticket) {
-
+    public void onTicketClick(TicketItem ticket) {
+        // Fragment로 이벤트를 전달하도록
+        // SingleLiveEvent의 값을 변경한다.
+        ticketClickEvent.setValue(ticket);
     }
 }
