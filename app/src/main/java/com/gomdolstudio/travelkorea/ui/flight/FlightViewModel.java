@@ -69,7 +69,7 @@ public class FlightViewModel extends AndroidViewModel implements FlightItem.Even
         flight.setDepPlandTime(String.valueOf(year) + monthString + dayString);
     }
 
-    public SingleLiveEvent<FlightItem> getFlightItem(){
+    public SingleLiveEvent<FlightItem> getSearchBtnClickEvent(){
         return searchBtnClickEvent;
     }
 

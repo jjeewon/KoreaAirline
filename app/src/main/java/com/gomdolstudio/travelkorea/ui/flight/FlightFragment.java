@@ -59,6 +59,10 @@ public class FlightFragment extends DaggerFragment {
         super.onViewCreated(view, savedInstanceState);
         binding.setLifecycleOwner(getViewLifecycleOwner());
         binding.setViewModel(viewModel);
+
+        viewModel.getSearchBtnClickEvent()
+                .observe(getViewLifecycleOwner(), flightItem ->
+                        navController.get().navigate(FlightFragmentDirections.actionFlightFragmentToTicketFragment(flightItem.getFlight())));
     }
 
 }

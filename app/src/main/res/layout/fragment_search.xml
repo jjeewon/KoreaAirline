@@ -62,7 +62,7 @@
             app:layout_constrainedWidth="true"
             android:textSize="22dp"
             android:text="항공권 검색"
-            android:onClick="@{v -> viewModel.onSearchBtnClick(viewModel.flightItem)}"
+            android:onClick="@{v -> viewModel.onSearchBtnClick(viewModel.searchBtnClickEvent)}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
