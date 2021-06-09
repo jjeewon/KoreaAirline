@@ -20,8 +20,8 @@ import javax.inject.Inject;
 public class FlightViewModel extends AndroidViewModel implements FlightItem.EventListener{
 
     // Flight Item을 Live Data로 관리
-    private final Flight flight = new Flight("10","1","ICN",
-            "ICN","DD","SS");
+    private final Flight flight = new Flight("10","1","NAARKJJ",
+            "NAARKPC","20210109","");
     private final String depId = "depId";
     private final String arrId = "arrId";
 
