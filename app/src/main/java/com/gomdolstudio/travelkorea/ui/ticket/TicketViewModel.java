@@ -12,11 +12,14 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import io.reactivex.rxjava3.disposables.CompositeDisposable;
+
 public class TicketViewModel extends AndroidViewModel {
 
     private final MutableLiveData<Boolean> loading = new MutableLiveData<>(true);
 
     private final MutableLiveData<List<TicketItem>> liveTickets = new MutableLiveData<>();
+    private final CompositeDisposable compositeDisposable = new CompositeDisposable();
     
     @Inject
     public TicketViewModel(@NonNull Application application) {
