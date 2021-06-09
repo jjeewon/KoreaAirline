@@ -11,6 +11,7 @@ import com.gomdolstudio.travelkorea.di.ActivityScope;
 import com.gomdolstudio.travelkorea.di.FragmentScope;
 import com.gomdolstudio.travelkorea.ui.flight.FlightFragment;
 import com.gomdolstudio.travelkorea.ui.flight.FlightModule;
+import com.gomdolstudio.travelkorea.ui.ticket.TicketModule;
 
 import dagger.Module;
 import dagger.Provides;
@@ -33,5 +34,6 @@ public abstract class MainModule {
     @FragmentScope
     @ContributesAndroidInjector(modules = FlightModule.class)
     abstract FlightFragment getFlightFragment();
+
 
 }
