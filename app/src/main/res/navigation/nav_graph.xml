@@ -14,5 +14,12 @@
         >
 
     </fragment>
+    <fragment
+        android:id="@+id/ticket_fragment"
+        android:name="com.gomdolstudio.travelkorea.ui.ticket.TicketFragment"
+        android:label="fragment_ticket"
+        >
+
+    </fragment>
 
 </navigation>
