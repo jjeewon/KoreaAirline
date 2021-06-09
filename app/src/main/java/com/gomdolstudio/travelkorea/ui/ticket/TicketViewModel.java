@@ -85,4 +85,9 @@ public class TicketViewModel extends AndroidViewModel implements TicketItem.Even
         // SingleLiveEvent의 값을 변경한다.
         ticketClickEvent.setValue(ticket);
     }
+
+    // TicketFragment로 ticketClickEvent 변수를 노출
+    public SingleLiveEvent<TicketItem> getTicketClickEvent(){
+        return ticketClickEvent;
+    }
 }
