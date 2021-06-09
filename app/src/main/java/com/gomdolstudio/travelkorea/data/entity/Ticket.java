@@ -26,6 +26,38 @@ public class Ticket implements Parcelable {
         this.arrAirportNm = arrAirportNm;
     }
 
+    public String getVihicleId() {
+        return vihicleId;
+    }
+
+    public String getAirlineNm() {
+        return airlineNm;
+    }
+
+    public String getDepPlandTime() {
+        return depPlandTime;
+    }
+
+    public String getArrAirportNm() {
+        return arrAirportNm;
+    }
+
+    public String getArrPlandTime() {
+        return arrPlandTime;
+    }
+
+    public String getDepAirportNm() {
+        return depAirportNm;
+    }
+
+    public String getEconomyCharge() {
+        return economyCharge;
+    }
+
+    public String getPrestigeCharge() {
+        return prestigeCharge;
+    }
+
     protected Ticket(Parcel in) {
         vihicleId = in.readString();
         airlineNm = in.readString();
