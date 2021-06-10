@@ -6,6 +6,7 @@ import android.content.Context;
 import com.gomdolstudio.travelkorea.App;
 import com.gomdolstudio.travelkorea.util.SingleLiveEvent;
 
+
 import javax.inject.Named;
 import javax.inject.Singleton;
 
@@ -13,7 +14,9 @@ import dagger.Module;
 import dagger.Provides;
 import hu.akarnokd.rxjava3.retrofit.RxJava3CallAdapterFactory;
 import retrofit2.Retrofit;
-import retrofit2.converter.simplexml.SimpleXmlConverterFactory;
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
+import retrofit2.converter.gson.GsonConverterFactory;
+
 
 @Module(includes = {ViewModelModule.class, RetrofitModule.class})
 public class AppModule {
@@ -42,9 +45,11 @@ public class AppModule {
     @Singleton
     Retrofit provideRetrofit(){
         return new Retrofit.Builder()
-                .baseUrl("http://openapi.tago.go.kr/openapi/service/DmstcFlightNvgInfoService/getFlightOpratInfoList?serviceKey=qMYuD3Bao%2BaVVtqIcLH1sqz80i%2BotqoifcU1C7frDT%2BSVjQD9FXw8uT1CqYcME%2Bq%2BA8YKoiZns1FXGGgJVwVzg%3D%3D")
-                .addConverterFactory(SimpleXmlConverterFactory.create())
+                .baseUrl("http://openapi.tago.go.kr/openapi/service/DmstcFlightNvgInfoService/")
+                .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJava3CallAdapterFactory.create())
                 .build();
     }
+
+
 }
