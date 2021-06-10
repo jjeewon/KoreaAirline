@@ -7,6 +7,10 @@ import androidx.databinding.library.baseAdapters.BR;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.gomdolstudio.travelkorea.R;
+import com.gomdolstudio.travelkorea.data.entity.Item;
+import com.gomdolstudio.travelkorea.data.entity.Response;
+import com.gomdolstudio.travelkorea.data.entity.Ticket;
+import com.gomdolstudio.travelkorea.data.entity.TicketResponse;
 import com.gomdolstudio.travelkorea.util.ViewBindingHolder;
 
 import java.util.ArrayList;
@@ -47,10 +51,28 @@ public class TicketAdapter extends RecyclerView.Adapter<ViewBindingHolder> {
         return items.size();
     }
 
-    // 외부로부터 티켓 목록을 받아서 UI를 갱신한다.
-    public void setTickets(List<TicketItem> items){
+    public void setTickets(TicketResponse response, TicketViewModel viewModel){
+        List<Item> responseItems = response.getItems();
+        List<TicketItem> ticketItems = new ArrayList<>();
+        for(Item item : responseItems){
+            Ticket ticket = new Ticket(item.getVihicleId(), item.getAirlineNm(), item.getDepPlandTime(),
+                    item.getArrPlandTime(), item.getEconomyCharge(), item.getPrestigeCharge()
+                    , item.getDepAirportNm(), item.getArrAirportNm());
+            TicketItem ticketItem = new TicketItem(ticket,viewModel);
+            ticketItems.add(ticketItem);
+
+        }
+
+
         this.items.clear();
-        this.items.addAll(items);
+        this.items.addAll(ticketItems);
         this.notifyDataSetChanged();
     }
+
+    public void getError(Throwable error){
+        String a = error.getStackTrace().toString();
+    }
+
+
+
 }
