@@ -6,9 +6,12 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.MutableLiveData;
 
+import com.gomdolstudio.travelkorea.R;
 import com.gomdolstudio.travelkorea.data.SearchService;
 import com.gomdolstudio.travelkorea.data.entity.Flight;
+import com.gomdolstudio.travelkorea.data.entity.Response;
 import com.gomdolstudio.travelkorea.data.entity.Ticket;
+import com.gomdolstudio.travelkorea.data.entity.TicketResponse;
 import com.gomdolstudio.travelkorea.util.SingleLiveEvent;
 
 import java.util.List;
@@ -20,6 +23,8 @@ import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.core.Observable;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import io.reactivex.rxjava3.schedulers.Schedulers;
+import okhttp3.OkHttpClient;
+import okhttp3.logging.HttpLoggingInterceptor;
 import timber.log.Timber;
 
 public class TicketViewModel extends AndroidViewModel implements TicketItem.EventListener{
@@ -30,9 +35,12 @@ public class TicketViewModel extends AndroidViewModel implements TicketItem.Even
     private final MutableLiveData<Boolean> loading = new MutableLiveData<>(true);
 
     private final MutableLiveData<List<TicketItem>> liveTickets = new MutableLiveData<>();
+    private final MutableLiveData<List<Ticket>> tickets = new MutableLiveData<>();
+    private final MutableLiveData<TicketResponse> liveResponse = new MutableLiveData<>();
     private final CompositeDisposable compositeDisposable = new CompositeDisposable();
 
     private final SingleLiveEvent<TicketItem> ticketClickEvent = new SingleLiveEvent<>();
+
     @NonNull
     private final SearchService searchService;
 
@@ -45,22 +53,21 @@ public class TicketViewModel extends AndroidViewModel implements TicketItem.Even
         this.errorEvent = errorEvent;
     }
 
-
+    public MutableLiveData<List<Ticket>> getTickets(){ return tickets; }
     public MutableLiveData<Boolean> getLoading(){
         return loading;
     }
 
     public void load(Flight flight){
-        compositeDisposable.add(searchService.getTicket(flight.getNumOfRows(),
+        flight.setDepAirportId("NAARKJJ");
+        flight.setArrAirportId("NAARKPC");
+        compositeDisposable.add(searchService.getTicket(flight.getServiceKey(),flight.getNumOfRows(),
                 flight.getPageNo(),flight.getDepAirportId(),flight.getArrAirportId(),
-                flight.getDepPlandTime(),flight.getAirlineId())
-                .flatMapObservable(Observable::fromIterable)
-                .map(ticket -> new TicketItem(ticket,this))
-                .toList()
+                Long.parseLong(flight.getDepPlandTime()),"json")
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnSuccess(item -> loading.postValue(false))
-                .subscribe(liveTickets::setValue, errorEvent::setValue));
+                .subscribe(liveResponse::setValue, errorEvent::setValue));
     }
 
     @Override
@@ -69,6 +76,7 @@ public class TicketViewModel extends AndroidViewModel implements TicketItem.Even
         Timber.d("onCleared");
         compositeDisposable.dispose();
     }
+    /**
 
     @NonNull
     public MutableLiveData<List<TicketItem>> getLiveTickets(){
@@ -89,5 +97,14 @@ public class TicketViewModel extends AndroidViewModel implements TicketItem.Even
     // TicketFragment로 ticketClickEvent 변수를 노출
     public SingleLiveEvent<TicketItem> getTicketClickEvent(){
         return ticketClickEvent;
+    }
+
+    @NonNull
+    public MutableLiveData<TicketResponse> getLiveResponse() {
+        return liveResponse;
+    }
+
+    public SingleLiveEvent<Throwable> getErrorEvent(){
+        return errorEvent;
     }
 }
