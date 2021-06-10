@@ -24,7 +24,7 @@ public class TicketItem {
     }
 
     public String getDepPlandTime() {
-        return ticket.getDepPlandTime();
+        return Long.toString(ticket.getDepPlandTime());
     }
 
     public String getArrAirportNm() {
@@ -32,7 +32,7 @@ public class TicketItem {
     }
 
     public String getArrPlandTime() {
-        return ticket.getArrPlandTime();
+        return Long.toString(ticket.getArrPlandTime());
     }
 
     public String getDepAirportNm() {
@@ -40,11 +40,11 @@ public class TicketItem {
     }
 
     public String getEconomyCharge() {
-        return ticket.getEconomyCharge();
+        return Long.toString(ticket.getEconomyCharge());
     }
 
     public String getPrestigeCharge() {
-        return ticket.getPrestigeCharge();
+        return Long.toString(ticket.getPrestigeCharge());
     }
 
     public EventListener getEventListener(){
