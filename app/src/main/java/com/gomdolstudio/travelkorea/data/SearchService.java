@@ -9,9 +9,9 @@ import retrofit2.http.GET;
 import retrofit2.http.Query;
 
 public interface SearchService {
-    @GET("&{numOfRows}&{pageNo}&{depAirportId}&{arrAirportId}&{depPlandTime}&{airlineId}")
-    Single<List<Ticket>> getTicket(@Query("numOfRows") String numOfRows, @Query("pageNo") String pageNo,
+    @GET("getFlightOpratInfoList")
+    Single<List<Ticket>> getTicket(@Query("serviceKey") String serviceKey, @Query("numOfRows") String numOfRows, @Query("pageNo") String pageNo,
                                    @Query("depAirportId") String depAirportId, @Query("arrAirportId") String arrAirportId,
-                                   @Query("depPlandTime") String depPlandTime,@Query("airlineId") String airlineId
-                                   );
+                                   @Query("depPlandTime") String depPlandTime, @Query("airlineId") String airlineId, @Query("_type") String _type);
+
 }
