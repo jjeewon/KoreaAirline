@@ -6,16 +6,16 @@ import android.os.Parcelable;
 public class Ticket implements Parcelable {
     private String vihicleId;
     private String airlineNm;
-    private String depPlandTime;
-    private String arrPlandTime;
-    private String economyCharge;
-    private String prestigeCharge;
+    private long depPlandTime;
+    private long arrPlandTime;
+    private long economyCharge;
+    private long prestigeCharge;
     private String depAirportNm;
     private String arrAirportNm;
 
-    public Ticket(String vihicleId, String airlineNm, String depPlandTime,
-                  String arrPlandTime, String economyCharge, String prestigeCharge
-                    ,String depAirportNm, String arrAirportNm) {
+    public Ticket(String vihicleId, String airlineNm, long depPlandTime,
+                  long arrPlandTime, long economyCharge, long prestigeCharge
+            ,String depAirportNm, String arrAirportNm) {
         this.vihicleId = vihicleId;
         this.airlineNm = airlineNm;
         this.depPlandTime = depPlandTime;
@@ -34,7 +34,7 @@ public class Ticket implements Parcelable {
         return airlineNm;
     }
 
-    public String getDepPlandTime() {
+    public long getDepPlandTime() {
         return depPlandTime;
     }
 
@@ -42,7 +42,7 @@ public class Ticket implements Parcelable {
         return arrAirportNm;
     }
 
-    public String getArrPlandTime() {
+    public long getArrPlandTime() {
         return arrPlandTime;
     }
 
@@ -50,21 +50,21 @@ public class Ticket implements Parcelable {
         return depAirportNm;
     }
 
-    public String getEconomyCharge() {
+    public long getEconomyCharge() {
         return economyCharge;
     }
 
-    public String getPrestigeCharge() {
+    public long getPrestigeCharge() {
         return prestigeCharge;
     }
 
     protected Ticket(Parcel in) {
         vihicleId = in.readString();
         airlineNm = in.readString();
-        depPlandTime = in.readString();
-        arrPlandTime = in.readString();
-        economyCharge = in.readString();
-        prestigeCharge = in.readString();
+        depPlandTime = in.readLong();
+        arrPlandTime = in.readLong();
+        economyCharge = in.readLong();
+        prestigeCharge = in.readLong();
         depAirportNm = in.readString();
         arrAirportNm = in.readString();
     }
@@ -90,10 +90,10 @@ public class Ticket implements Parcelable {
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(vihicleId);
         dest.writeString(airlineNm);
-        dest.writeString(depPlandTime);
-        dest.writeString(arrPlandTime);
-        dest.writeString(economyCharge);
-        dest.writeString(prestigeCharge);
+        dest.writeLong(depPlandTime);
+        dest.writeLong(arrPlandTime);
+        dest.writeLong(economyCharge);
+        dest.writeLong(prestigeCharge);
         dest.writeString(depAirportNm);
         dest.writeString(arrAirportNm);
     }
